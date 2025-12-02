@@ -6,9 +6,9 @@ public class BibliotecaService {
 
     private Map<String, Libro> librosPorIsbn = new HashMap<>();
     private Map<String, Biblioteca> BibliotecasPorId = new HashMap<>();
-    private ArrayList<BibliotecaService> prestamos = new ArrayList<>();
+    private ArrayList<Prestar> prestamos = new ArrayList<>();
 
-    public BibliotecaService(Map<String, Libro> librosPorIsbn, Map<String, Biblioteca> bibliotecasPorId, ArrayList<BibliotecaService> prestamos) {
+    public BibliotecaService(Map<String, Libro> librosPorIsbn, Map<String, Biblioteca> bibliotecasPorId, ArrayList<Prestar> prestamos) {
         this.librosPorIsbn = librosPorIsbn;
         BibliotecasPorId = bibliotecasPorId;
         this.prestamos = prestamos;
@@ -38,11 +38,9 @@ public class BibliotecaService {
         }
 
         l.prestarEjemplar();
-// Map<String, Libro> librosPorIsbn, Map<String, Biblioteca> bibliotecasPorId, ArrayList<BibliotecaService> prestamos
-        BibliotecaService p = new BibliotecaService(u, l, null, null);
+//Biblioteca biblioteca, Libro libro, LocalDateTime fechaInicio, LocalDateTime fechaFinEstimada
+        Prestar p = new Prestar(u, l, null, null);
         prestamos.add(p);
-
-        return null;
     }
 
     public void devolverLibro(String idBiblioteca, String isbn) {
