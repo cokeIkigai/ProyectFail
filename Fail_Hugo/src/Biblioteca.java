@@ -6,7 +6,7 @@ public class Biblioteca {
     private String id;
     private String nombre;
     private int maximoPrestamosSimultaneos;
-    private List<Prestamo> prestamosActivos;
+    private List<Prestar> prestamosActivos;
 
     public Biblioteca(String id, String nombre) {
         this.id = id;
@@ -34,7 +34,7 @@ public class Biblioteca {
 
     }
 
-    public List<Prestamo> getPrestamosActivos() {
+    public List<Prestar> getPrestamosActivos() {
         return prestamosActivos; // <- nombre de campo incorrecto
     }
 
