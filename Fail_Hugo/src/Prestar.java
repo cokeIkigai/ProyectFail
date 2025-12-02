@@ -1,7 +1,7 @@
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
-public class Prestamo {  // Mejor nombre: Prestamo (sustantivo, no verbo)
+public class Prestar {  // Mejor nombre: Prestamo (sustantivo, no verbo)
 
     private Biblioteca biblioteca;  // minúscula
     private Libro libro;
@@ -9,7 +9,7 @@ public class Prestamo {  // Mejor nombre: Prestamo (sustantivo, no verbo)
     private LocalDateTime fechaFinEstimada;
     private boolean devuelto;
 
-    public Prestamo(Biblioteca biblioteca, Libro libro, LocalDateTime fechaInicio, LocalDateTime fechaFinEstimada) {
+    public Prestar(Biblioteca biblioteca, Libro libro, LocalDateTime fechaInicio, LocalDateTime fechaFinEstimada) {
         this.biblioteca = biblioteca;
         this.libro = libro;
         this.fechaInicio = fechaInicio;  // Con this
