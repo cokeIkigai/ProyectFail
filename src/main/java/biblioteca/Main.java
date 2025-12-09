@@ -1,12 +1,12 @@
 package biblioteca;
 import java.util.Scanner;
 
-public class BibliotecaApp {
+public class Main {
 
     private BibliotecaService servicio;
 
-    public BibliotecaApp() {
-        servicio = new BibliotecaServicio(); 
+    public Main() {
+        servicio = new BibliotecaServicio();
     }
 
     public static void main(String[] argumentos) {
