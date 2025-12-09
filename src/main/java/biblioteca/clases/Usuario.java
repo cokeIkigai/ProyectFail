@@ -1,5 +1,5 @@
 
-package biblioteca;
+package biblioteca.clases;
 
 import java.util.List; 
 
