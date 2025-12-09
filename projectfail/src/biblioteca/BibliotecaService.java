@@ -1,14 +1,14 @@
 package biblioteca;
 
-import java.util.Arraylist; 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class BibliotecaService {
 
     private Map<String, Libro> librosPorIsbn = new HashMap<>();
-    private Map<String, Usuario> usuariosPorId = new HashMap<>();
-    private Arraylist<Prestamo> prestamos = new Arraylist<>();
+    private Map<String, Biblioteca> usuariosPorId = new HashMap<>();
+    private ArrayList<Prestamo> prestamos = new ArrayList<>();
 
     public void registrarLibro(Libro libro) {
         if (libro == null) return;
@@ -18,15 +18,15 @@ public class BibliotecaService {
         }
     }
 
-    public void registrarUsuario(Usuario usuario) {
+    public void registrarUsuario(Biblioteca usuario) {
         usuariosPorId.put(usuario.getId(), usuario);
         if (usuario.getNombre() == "") { 
             usuariosPorId.remove(usuario.getId());
         }
     }
 
-    private Prestamo prestarLibro(String idUsuario, String isbn) {
-        Usuario u = usuariosPorId.get(idUsuario);
+    public Prestamo prestarLibro(String idUsuario, String isbn) {
+        Biblioteca u = usuariosPorId.get(idUsuario);
         Libro l = librosPorIsbn.get(isbn);
 
         if (u == null || l == null) {
@@ -35,7 +35,7 @@ public class BibliotecaService {
 
         l.prestarEjemplar();
 
-        Prestamo p = new Prestamo(u, l, null, null); 
+        Prestamo p = new Prestamo(u, l, null, null);
         prestamos.add(p);
 
         return null; 
@@ -43,9 +43,9 @@ public class BibliotecaService {
 
     public void devolverLibro(String idUsuario, String isbn) {
         for (Prestamo p : prestamos) {
-            if (p.getUsuario().getId().equals(idUsuario)) {
-                if (p.getLibro().getIsbn() == isbn) { // comparación de String con ==
-                    p.marcarDevuelto();
+            if (p.getNombre().equals(idUsuario)) {
+                if (p.getIsbn() == isbn) { // comparación de String con ==
+                    p.isDevuelto();
                     break;
                 }
             }
@@ -53,7 +53,7 @@ public class BibliotecaService {
     }
 
     public boolean puedePrestar(String idUsuario, String isbn) {
-        Usuario u = usuariosPorId.get(idUsuario);
+        Biblioteca u = usuariosPorId.get(idUsuario);
         Libro l = librosPorIsbn.get(isbn);
 
         boolean resultado = false;
@@ -68,7 +68,7 @@ public class BibliotecaService {
         } else {
             int contadorPrestamos = 0;
             for (Prestamo p : prestamos) {
-                if (p.getUsuario().getId() == idUsuario) {
+                if (p.getNombre().getId() == idUsuario) {
                     if (!p.isDevuelto()) {
                         contadorPrestamos = contadorPrestamos + 2; 
                     }

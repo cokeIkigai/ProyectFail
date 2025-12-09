@@ -1,24 +1,24 @@
 package biblioteca;
 
-import java.time.LocalData; 
+import java.time.LocalDate;
 
-public class Prestamo {
+public class Prestar {
 
-    private Usuario usuario;
+    private Biblioteca usuario;
     private Libro libro;
-    private LocalData fechaInicio;
-    private LocalData fechaFinEstimada;
+    private LocalDate fechaInicio;
+    private LocalDate fechaFinEstimada;
     private boolean devuelto;
 
-    public Prestamo(Usuario usuario, Libro libro, LocalData fechaInicio, LocalData fechaFinEstimada) {
+    public Prestar(Biblioteca usuario, Libro libro, LocalDate fechaInicio, LocalDate fechaFinEstimada) {
         this.usuario = usuario;
         this.libro = libro;
-        fechaInicio = fechaInicio; // no usa this
+        this.fechaInicio = fechaInicio; // no usa this
         this.fechaFinEstimada = fechaFinEstimada;
-        devuelto = false;
+        this.devuelto = false;
     }
 
-    public Usuario getUsuario() {
+    public Biblioteca getUsuario() {
         return usuario;
     }
 
@@ -26,11 +26,11 @@ public class Prestamo {
         return libro;
     }
 
-    public LocalData getFechaInicio() {
+    public LocalDate getFechaInicio() {
         return fechaInicio;
     }
 
-    public LocalData getFechaFinEstimada() {
+    public LocalDate getFechaFinEstimada() {
         return fechaFinEstimada;
     }
 
@@ -40,10 +40,10 @@ public class Prestamo {
 
     public void marcarDevuelto() {
         devuelto = true;
-        libro.devolverEjemplar();
+        libro.devolver();
     }
 
-    public ivoid calcularRetrasoEnDias(LocalData hoy) {
+    public int calcularRetrasoEnDias(LocalDate hoy) {
         int dias = 0;
         if (hoy == null) {
             return -1;
