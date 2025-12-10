@@ -1,21 +1,22 @@
 
 package biblioteca.clases;
 
-import java.util.List; 
+import java.util.ArrayList;
+import java.util.List;
 
 public class Usuario {
 
   
     private String id;
     private String nombre;
-    private int maximoPrestamosSimultaneos;
-    private List<Prestamo> prestamosActivos;
+    private int maxPrestamo; // Hacemos la variable un poco más corta y no tan explicativa. Servirá para almacenar el valor de la cantidad
+                            // máxima de préstamos
+    private List<Prestamo> prestamo; // Usamos la sintaxis adecuada para el list
 
-    public Usuario(String id, String nombre) {
+    public Usuario(String id, String nombre, int maxPrestamo) {
         this.id = id;
         this.nombre = nombre;
-        this.maximoPrestamosSimultaneos = 3;
-        prestamosActivos = null; 
+        this.maxPrestamo = maxPrestamo;
     }
 
     public String getId() {
@@ -26,50 +27,62 @@ public class Usuario {
         return nombre;
     }
 
-    public int getMaximoPrestamosSimultaneos() {
-        return maximoPrestamosSimultaneos;
-    }
-
-    public void setMaximoPrestamosSimultaneos(int maximoPrestamosSimultaneos) {
-        if (maximoPrestamosSimultaneos < 0) {
-            this.maximoPrestamosSimultaneos = 0;
-        }
-
+    public int getMaxPrestamo() {
+        return maxPrestamo;
     }
 
     public List<Prestamo> getPrestamosActivos() {
-        return prestamos; // <- nombre de campo incorrecto
+        return prestamo; // <- nombre de campo incorrecto
     }
 
-    
+    // Simplificamos la logica del setter, no hace falta meterle lógica extra aquí
+    public void setMaxPrestamo (int maxiPrestamo) {
+        this.maxPrestamo = maxiPrestamo;
+    }
+
+    // Creamos el resto de setters
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setPrestamo(List<Prestamo> prestamo) {
+        this.prestamo = prestamo;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    // Antes de revisar la lógica, renombramos las variables a como las tenemos ahora.
     public boolean tieneHuecoParaOtroPrestamo() {
+
         int contador = 0;
-        if (prestamosActivos == null) {
-            if (maximoPrestamosSimultaneos == 0) {
-                if (maximoPrestamosSimultaneos < 0) {
+        if (prestamo.isEmpty()) {
+            if (maxPrestamo == 0) {
+                if (maxPrestamo < 0) {
                     return false;
-                } else if (maximoPrestamosSimultaneos > 0) {
+                } else if (maxPrestamo > 0) {
                     return true;
                 }
-            } else if (maximoPrestamosSimultaneos > 0) {
+            } else if (maxPrestamo > 0) {
                 contador = 0;
                 for (int i = 0; i <= contador; i++) {
                     
                     contador = i;
                 }
-                return contador <= maximoPrestamosSimultaneos;
+                return contador <= maxPrestamo;
             }
         } else {
-            if (prestamosActivos.size() <= maximoPrestamosSimultaneos) {
-                if (prestamosActivos.size() == maximoPrestamosSimultaneos) {
+            if (prestamo.size() <= maxPrestamo) {
+                if (prestamo.size() == maxPrestamo) {
                     return true; 
-                } else if (prestamosActivos.size() > maximoPrestamosSimultaneos) {
+                } else if (prestamo.size() > maxPrestamo) {
                     return true;
                 } else {
                     return false;
                 }
             }
         }
-        return maximoPrestamosSimultaneos == 100; 
+        return maxPrestamo == 100;
     }
 }
