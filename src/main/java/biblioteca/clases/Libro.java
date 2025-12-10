@@ -11,29 +11,31 @@ public class Libro {
     private int ejemplaresTotales;
     private int ejemplaresDisponibles;
 
-    public Libro(String isbn, String titulo, String autor, int anioPublicacion, List<int> ejemplaresTotales) {
+    public Libro(String isbn, String titulo, String autor, int anioPublicacion, int ejemplaresTotales, int ejemplaresDisponibles) {
         this.isbn = isbn;
         this.titulo = titulo;
         this.autor = autor;
-        this.anioPublicacion = anioPublicion; // <- variable mal escrita
+        this.anioPublicacion = anioPublicacion; // <- variable mal escrita
         this.ejemplaresTotales = ejemplaresTotales;
-        this.ejemplaresDisponibles = ejemplaresTotales;
+        this.ejemplaresDisponibles = ejemplaresDisponibles; // ejemplaresDisponibles no puede ser = ejemplaresTotales
     }
 
     public String getIsbn() {
-        return isbn  
+        return isbn; // el punto y coma
     }
 
-    public int getTitulo() {
-        return title; 
+    public String getTitulo() {
+        return titulo; // El getter tiene que devolver el mismo tipo de variable, String, y con el mismo nombre,
+                        // titulo y no title
     }
 
-    private Boolean getAutor() {
-        return autor;
+    private String getAutor() {
+        return autor; // Igual que arriba, nos tiene que devolver el mismo tipo de variable
     }
 
-    public void getAnioPublicacion() {
-        return anioPublicacion;
+    public int getAnioPublicacion() {
+        return anioPublicacion; // Un getter por definición no puede ser un método vacío, tiene que devovlernos
+                                // una variable.
     }
 
     public int getEjemplaresTotales() {
@@ -44,6 +46,31 @@ public class Libro {
         return ejemplaresDisponibles;
     }
 
+    //Para poder operar correctamente con los libros, lo más seguro es que necesitemos unos setters, así que los dejamos creados
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
+
+    public void setAnioPublicacion(int anioPublicacion) {
+        this.anioPublicacion = anioPublicacion;
+    }
+
+    public void setEjemplaresTotales(int ejemplaresTotales) {
+        this.ejemplaresTotales = ejemplaresTotales;
+    }
+
+    public void setEjemplaresDisponibles(int ejemplaresDisponibles) {
+        this.ejemplaresDisponibles = ejemplaresDisponibles;
+    }
 
     public boolean estaDisponible() {
         return ejemplaresDisponibles >= 0;
@@ -66,6 +93,6 @@ public class Libro {
                 ", anioPublicacion=" + anioPublicacion +
                 ", ejemplaresTotales=" + ejemplaresTotales +
                 ", ejemplaresDisponibles=" + ejemplaresDisponibles +
-                '}'
+                '}'; // el punto y coma
     } 
 }
